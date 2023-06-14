@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.fwm.dto.ApiResponseDto.ApiResponseDtoBuilder;
 import com.fwm.dto.DashboardResponseDto;
+import com.fwm.model.Food;
 import com.fwm.model.User;
+import com.fwm.repository.FoodRepository;
 import com.fwm.repository.UserRepository;
 import com.fwm.service.IDashboardService;
 
@@ -16,7 +18,8 @@ import com.fwm.service.IDashboardService;
 public class DashboardServiceImpl implements IDashboardService {
 	@Autowired
 	private UserRepository userRepository;
-	
+	@Autowired
+	private FoodRepository foodRepository;
 
 	@Override
 	public void getAllUserDetails(ApiResponseDtoBuilder apiResponseDtoBuilder) {
@@ -39,7 +42,15 @@ public class DashboardServiceImpl implements IDashboardService {
 		// 6-Recipient_organization
 		List<User> ListOfRecipientOrganization = userRepository.findByRole(6);
 		dashboardResponseDto.setTotalCountOfRecipientOrganizationMember(ListOfRecipientOrganization.size());
-		
+		// food in pending
+		List<Food> ListOfFoodInPending = foodRepository.findByStatus(0);
+		dashboardResponseDto.setTotalCountOfFoodPending(ListOfFoodInPending.size());
+		// food in Progress
+		List<Food> ListOfFoodInProgress = foodRepository.findByStatus(1);
+		dashboardResponseDto.setTotalCountOfFoodInProgress(ListOfFoodInProgress.size());
+		// food in donat
+		List<Food> ListOfFoodDonate = foodRepository.findByStatus(0);
+		dashboardResponseDto.setTotalCountOfDonateFood(ListOfFoodDonate.size());
 
 		apiResponseDtoBuilder.withMessage("success").withStatus(HttpStatus.OK).withData(dashboardResponseDto);
 
