@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fwm.constants.Constants;
 import com.fwm.dto.ApiResponseDto;
 import com.fwm.dto.ApiResponseDto.ApiResponseDtoBuilder;
+import com.fwm.dto.UserFilterWithPaginationDto;
 import com.fwm.dto.UserRequestDto;
 import com.fwm.model.User;
 import com.fwm.service.IUserService;
@@ -79,6 +80,13 @@ public class UserController {
 		return apiResponseDtoBuilder.build();
 	}
 
+	@RequestMapping(value = "/user/pagination/filter", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public ApiResponseDto getUserListByFilterWithPagination(
+			@RequestBody UserFilterWithPaginationDto filterWithPagination) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		userService.getUserListByFilterWithPagination(filterWithPagination, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
 
 	@RequestMapping(value = "/user/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public ApiResponseDto updateUser(@Valid @RequestBody User user) {
