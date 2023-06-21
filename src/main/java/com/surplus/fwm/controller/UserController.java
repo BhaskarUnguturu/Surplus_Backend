@@ -58,5 +58,48 @@ public class UserController {
 		return apiResponseDtoBuilder.build();
 	}
 
+	@RequestMapping(value = "/user/list", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public ApiResponseDto getAllUsersListDetails() {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		userService.getAllUserDetails(apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/user/active", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public ApiResponseDto isActiveUser(@RequestParam(required = true) long id,
+			@RequestParam(required = true) boolean active) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		userService.isActiveUser(id, active, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/user/{id}/delete", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+	public ApiResponseDto deleteUserById(@PathVariable(required = true) long id) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		userService.deleteUserById(id, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/user/pagination/filter", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public ApiResponseDto getUserListByFilterWithPagination(
+			@RequestBody UserFilterWithPaginationDto filterWithPagination) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		userService.getUserListByFilterWithPagination(filterWithPagination, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/user/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public ApiResponseDto updateUser(@Valid @RequestBody User user) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		userService.updateUser(user, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/user/refer", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public ApiResponseDto referFriendByEmail(@RequestParam(required = true) String email) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		userService.referFriendByEmail(email, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
 	
 }
