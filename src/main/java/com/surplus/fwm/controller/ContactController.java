@@ -31,4 +31,10 @@ public class ContactController {
 		return apiResponseDtoBuilder.build();
 	}
 
+	@RequestMapping(value = "/contact/get/all", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public ApiResponseDto getAllContact() {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		contactService.getAllContact(apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
 }
