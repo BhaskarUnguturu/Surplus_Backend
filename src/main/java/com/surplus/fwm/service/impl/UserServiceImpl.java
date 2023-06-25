@@ -55,11 +55,11 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByMobileNumberOrEmail(username, username);
+		User user = userRepository.findByEmail(username);
 		if (user == null) {
 			throw new UsernameNotFoundException(Constants.INVALID_USERNAME_OR_PASSWORD);
 		}
-		return new org.springframework.security.core.userdetails.User(user.getMobileNumber(), user.getPassword(),
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
 				getAuthority());
 	}
 
@@ -85,7 +85,9 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 		user.setCreatedAt(new Date());
 		save(user);
 		apiResponseDtoBuilder.withMessage(Constants.USER_ADD_SUCCESS).withStatus(HttpStatus.OK).withData(user);
-		verificationTokenService.sendVerificationToken(user);
+		new Thread(() -> {
+			verificationTokenService.sendVerificationToken(user);
+		}).start();
 	}
 
 	@Override
@@ -143,9 +145,11 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 		user.setPassword(newPasswordEncodedString);
 		save(user);
 		apiResponseDtoBuilder.withMessage(Constants.SEND_DETAILS_TO_YOUR_EMAIL).withStatus(HttpStatus.OK);
-		String subject = "Temporary Password";
-		String body = emailService.createEmailBodyForForgotPassword(user.getFullName(), password);
-		emailService.sendEmail(user.getEmail(), subject, body, "", null, null);
+		new Thread(() -> {
+			String subject = "Temporary Password";
+			String body = emailService.createEmailBodyForForgotPassword(user.getFullName(), password);
+			emailService.sendEmail(user.getEmail(), subject, body, "", null, null);
+		}).start();
 	}
 
 	@Override
@@ -203,21 +207,23 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 			ApiResponseDtoBuilder apiResponseDtoBuilder) {
 		PaginationDto pagination = userRepositoryCustom.getUserListByFilterWithPagination(filterWithPagination);
 		apiResponseDtoBuilder.withMessage(Constants.DATA_LIST).withStatus(HttpStatus.OK).withData(pagination);
-
 	}
 
 	@Override
 	public void updateUser(@Valid User user, ApiResponseDtoBuilder apiResponseDtoBuilder) {
-		if (!userRepository.existsByMobileNumber(user.getMobileNumber())) {
-			apiResponseDtoBuilder.withMessage(Constants.NO_USER_EXISTS).withStatus(HttpStatus.OK).withData(user);
-			return;
+		Optional<User> userDb = userRepository.findById(user.getId());
+		if (userDb.isPresent()) {
+			userDb.get().setFullName(user.getFullName());
+			userDb.get().setEmail(user.getEmail());
+			userDb.get().setMobileNumber(user.getMobileNumber());
+			userDb.get().setUpdatedAt(new Date());
+			userDb.get().setDietaryRestrictions(user.getDietaryRestrictions());
+			save(userDb.get());
+			apiResponseDtoBuilder.withMessage(Constants.USER_UPDATED_SUCCESSFULLY).withStatus(HttpStatus.OK)
+					.withData(user);
+		} else {
+			apiResponseDtoBuilder.withMessage("Not found").withStatus(HttpStatus.NOT_FOUND);
 		}
-		String newPasswordEncodedString = bCryptPasswordEncoder.encode(user.getMobileNumber());
-		user.setPassword(newPasswordEncodedString);
-		user.setUpdatedAt(new Date());
-		save(user);
-		apiResponseDtoBuilder.withMessage(Constants.USER_UPDATED_SUCCESSFULLY).withStatus(HttpStatus.OK).withData(user);
-
 	}
 
 	@Override
@@ -228,7 +234,6 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 		} else {
 			apiResponseDtoBuilder.withMessage("fail").withStatus(HttpStatus.NOT_FOUND);
 		}
-
 	}
 
 	@Override

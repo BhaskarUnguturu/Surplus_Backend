@@ -17,10 +17,18 @@ public interface IFoodService {
 
 	void getAllFoodListDetails(ApiResponseDtoBuilder apiResponseDtoBuilder);
 
-	void getFoodListByUserId(long userId, ApiResponseDtoBuilder apiResponseDtoBuilder);
+	void getFoodList(ApiResponseDtoBuilder apiResponseDtoBuilder);
 
 	void getFoodById(long id, ApiResponseDtoBuilder apiResponseDtoBuilder);
 
-	void deliverFood();
+	void distributeFood();
+
+	void getDonationList(ApiResponseDtoBuilder apiResponseDtoBuilder);
+
+	void completedFood();
+
+	void acceptFood(long id, ApiResponseDtoBuilder apiResponseDtoBuilder);
+
+	void rejectFood(long id, ApiResponseDtoBuilder apiResponseDtoBuilder);
 
 }

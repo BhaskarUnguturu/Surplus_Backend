@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.surplus.fwm.constants.Constants;
@@ -39,10 +40,17 @@ public class FoodController {
 		return apiResponseDtoBuilder.build();
 	}
 
-	@RequestMapping(value = "/food/list/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-	public ApiResponseDto getFoodListByUserId(@PathVariable(required = true) long userId) {
+	@RequestMapping(value = "/food/list", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public ApiResponseDto getFoodList() {
 		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
-		foodService.getFoodListByUserId(userId, apiResponseDtoBuilder);
+		foodService.getFoodList(apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/donation/list", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public ApiResponseDto getDonationList() {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		foodService.getDonationList(apiResponseDtoBuilder);
 		return apiResponseDtoBuilder.build();
 	}
 
@@ -50,6 +58,20 @@ public class FoodController {
 	public ApiResponseDto getFoodById(@PathVariable(required = true) long id) {
 		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
 		foodService.getFoodById(id, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/food/accept", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+	public ApiResponseDto acceptFood(@RequestParam(required = true) long id) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		foodService.acceptFood(id, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
+	@RequestMapping(value = "/food/reject", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+	public ApiResponseDto rejectFood(@RequestParam(required = true) long id) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		foodService.rejectFood(id, apiResponseDtoBuilder);
 		return apiResponseDtoBuilder.build();
 	}
 }

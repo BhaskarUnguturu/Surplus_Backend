@@ -23,7 +23,7 @@ import com.surplus.fwm.constants.Constants;
 @Entity
 @Table(name = Constants.FOOD_TABLE_NAME)
 @JsonIgnoreProperties
-public class Food  {
+public class Food {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -50,7 +50,18 @@ public class Food  {
 	private Date expirationDate;
 	private String dietaryRestrictions;
 	private Long receipentId;
+	@JsonSerialize(using = CustomJsonDateSerializer.class)
+	@JsonDeserialize(using = CustomDateAndTimeDeserialize.class)
+	private Date distributionDate;
 	private Integer status = 0;
+
+	public Date getDistributionDate() {
+		return distributionDate;
+	}
+
+	public void setDistributionDate(Date distributionDate) {
+		this.distributionDate = distributionDate;
+	}
 
 	public Long getReceipentId() {
 		return receipentId;

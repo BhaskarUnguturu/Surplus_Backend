@@ -11,6 +11,7 @@ public class Constants {
 	public static final String VERIFICATION_TOKEN_TABLE_NAME = "verification_token_details";
 	public static final String RATING_TABLE_NAME = "rating_details";
 	public static final String FEEDBACK_TABLE_NAME = "feedback_details";
+	public static final String CONTACT_TABLE_NAME = "contact_details";
 
 	// Token
 	public static final String TOKEN_INVALID = "invalidToken";
@@ -32,7 +33,7 @@ public class Constants {
 	public static final String USER_MOBILE_NUMBER_ALREADY_EXISTS = "User mobile number Already Exist";
 	public static final String NO_USER_EXISTS = "No User Exists";
 	public static final String USER_DELETED_SUCCESSFULLY = "User Deleted Successfully";
-	public static final String USER_UPDATED_SUCCESSFULLY = "User Updated Successfully";
+	public static final String USER_UPDATED_SUCCESSFULLY = "Profile Updated Successfully";
 	public static final String STATUS_CHANGED = "Status Changed";
 	public static final String USER_IS_ACTIVE = "User Is Active";
 	public static final String USER_IS_INACTIVE = "User Is InActive";
