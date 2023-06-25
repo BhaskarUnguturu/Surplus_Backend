@@ -90,7 +90,7 @@ public class Utility {
 	public static User getSessionUser(UserRepository userRepository) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String currentUsername = authentication.getName();
-		return userRepository.findByEmailOrMobileNumber(currentUsername, currentUsername);
+		return userRepository.findByEmail(currentUsername);
 	}
 
 	public static Date getFormatedDateFromDate(Date date, int hourOfDay, int minute) {
