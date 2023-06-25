@@ -101,5 +101,4 @@ public class UserController {
 		userService.referFriendByEmail(email, apiResponseDtoBuilder);
 		return apiResponseDtoBuilder.build();
 	}
-	
 }

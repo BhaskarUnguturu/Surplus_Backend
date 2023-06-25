@@ -7,6 +7,11 @@ public class DashboardResponseDto {
 	private long totalCountOfNGO;
 	private long totalCountOfRecipientIndividualMember;
 	private long totalCountOfRecipientOrganizationMember;
+	
+	private long totalCountOfDonateFood;
+	private long totalCountOfFoodPending;
+	private long totalCountOfFoodInProgress;
+
 
 	public long getTotalCountOfDonateFood() {
 		return totalCountOfDonateFood;
@@ -31,10 +36,6 @@ public class DashboardResponseDto {
 	public void setTotalCountOfFoodInProgress(long totalCountOfFoodInProgress) {
 		this.totalCountOfFoodInProgress = totalCountOfFoodInProgress;
 	}
-
-	private long totalCountOfDonateFood;
-	private long totalCountOfFoodPending;
-	private long totalCountOfFoodInProgress;
 
 	public long getTotalCountOfUniversityMember() {
 		return totalCountOfUniversityMember;

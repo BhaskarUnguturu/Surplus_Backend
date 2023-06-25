@@ -49,7 +49,7 @@ public class DashboardServiceImpl implements IDashboardService {
 		List<Food> ListOfFoodInProgress = foodRepository.findByStatus(1);
 		dashboardResponseDto.setTotalCountOfFoodInProgress(ListOfFoodInProgress.size());
 		// food in donat
-		List<Food> ListOfFoodDonate = foodRepository.findByStatus(0);
+		List<Food> ListOfFoodDonate = foodRepository.findByStatus(3);
 		dashboardResponseDto.setTotalCountOfDonateFood(ListOfFoodDonate.size());
 
 		apiResponseDtoBuilder.withMessage("success").withStatus(HttpStatus.OK).withData(dashboardResponseDto);

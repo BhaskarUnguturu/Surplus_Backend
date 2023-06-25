@@ -7,7 +7,15 @@ public class UserRequestDto {
 	private String mobileNumber;
 	private int role;
 	private String address;
-	
+	private String dietaryRestrictions;
+
+	public String getDietaryRestrictions() {
+		return dietaryRestrictions;
+	}
+
+	public void setDietaryRestrictions(String dietaryRestrictions) {
+		this.dietaryRestrictions = dietaryRestrictions;
+	}
 
 	public int getRole() {
 		return role;

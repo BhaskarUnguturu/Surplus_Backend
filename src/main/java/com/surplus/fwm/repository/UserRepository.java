@@ -37,4 +37,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	public List<User> findByRoleIn(List<Integer> roleList);
 
+	public List<User> findByRoleInAndIdNotIn(List<Integer> roleList, List<Long> userList);
+
 }

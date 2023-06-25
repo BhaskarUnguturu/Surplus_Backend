@@ -12,10 +12,17 @@ public class ScheduledTasks {
 	@Autowired
 	IFoodService foodService;
 	
-	//@Scheduled(cron = "0 * * ? * *")
+	//@Scheduled(cron = "0 0 */1 * * *")
 	@EventListener(ApplicationReadyEvent.class)
-	public void scheduleTaskToAddServerHeanth() {
-		foodService.deliverFood();
+	public void distributeFood() {
+		foodService.distributeFood();
+		System.out.println("Task Run in a every minute");
+	}
+	
+	//@Scheduled(cron = "0 0 */1 * * *")
+	@EventListener(ApplicationReadyEvent.class)
+	public void completedFood() {
+		foodService.completedFood();
 		System.out.println("Task Run in a every minute");
 	}
 }

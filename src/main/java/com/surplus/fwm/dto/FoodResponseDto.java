@@ -7,6 +7,7 @@ public class FoodResponseDto {
 	private Date createdAt;
 	private Date updatedAt;
 	private long userId;
+	private String donorName;
 	private Date schedulingTimeDate;
 	private String venue;
 	private String typeOfDonation;
@@ -19,6 +20,23 @@ public class FoodResponseDto {
 	private Integer status;
 	private int rating;
 	private String feedback;
+	private Date distributionDate;
+
+	public String getDonorName() {
+		return donorName;
+	}
+
+	public void setDonorName(String donorName) {
+		this.donorName = donorName;
+	}
+
+	public Date getDistributionDate() {
+		return distributionDate;
+	}
+
+	public void setDistributionDate(Date distributionDate) {
+		this.distributionDate = distributionDate;
+	}
 
 	public String getReceipentName() {
 		return receipentName;
