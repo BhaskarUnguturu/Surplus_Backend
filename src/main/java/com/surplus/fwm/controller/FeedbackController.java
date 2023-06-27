@@ -32,4 +32,10 @@ public class FeedbackController {
 		return apiResponseDtoBuilder.build();
 	}
 
+	@RequestMapping(value = "/user/{userId}/feedback", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+	public ApiResponseDto getFeedbackListByUserId(@PathVariable(required = true) long userId) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		feedbackService.getFeedbackListByUserId(userId, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
 }
