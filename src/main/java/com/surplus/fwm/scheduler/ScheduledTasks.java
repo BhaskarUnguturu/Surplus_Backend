@@ -1,8 +1,7 @@
 package com.surplus.fwm.scheduler;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.surplus.fwm.service.IFoodService;
@@ -11,18 +10,18 @@ import com.surplus.fwm.service.IFoodService;
 public class ScheduledTasks {
 	@Autowired
 	IFoodService foodService;
-	
-	//@Scheduled(cron = "0 0 */1 * * *")
-	@EventListener(ApplicationReadyEvent.class)
+
+	@Scheduled(cron = "0 0/5 * * * ?")
+	// @EventListener(ApplicationReadyEvent.class)
 	public void distributeFood() {
 		foodService.distributeFood();
-		System.out.println("Task Run in a every minute");
+		System.out.println("Scheduler run in a every 5 minute for distribute food");
 	}
-	
-	//@Scheduled(cron = "0 0 */1 * * *")
-	@EventListener(ApplicationReadyEvent.class)
+
+	@Scheduled(cron = "0 0/10 * * * ?")
+	// @EventListener(ApplicationReadyEvent.class)
 	public void completedFood() {
 		foodService.completedFood();
-		System.out.println("Task Run in a every minute");
+		System.out.println("Scheduler run in a every 10 minute for food donation");
 	}
 }

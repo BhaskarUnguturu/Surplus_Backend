@@ -7,11 +7,11 @@ public class DashboardResponseDto {
 	private long totalCountOfNGO;
 	private long totalCountOfRecipientIndividualMember;
 	private long totalCountOfRecipientOrganizationMember;
-	
-	private long totalCountOfDonateFood;
-	private long totalCountOfFoodPending;
-	private long totalCountOfFoodInProgress;
 
+	private long totalCountOfFoodInProgress;
+	private long totalCountOfFoodInDistribution;
+	private long totalCountOfFoodInCollection;
+	private long totalCountOfDonateFood;
 
 	public long getTotalCountOfDonateFood() {
 		return totalCountOfDonateFood;
@@ -21,12 +21,20 @@ public class DashboardResponseDto {
 		this.totalCountOfDonateFood = totalCountOfDonateFood;
 	}
 
-	public long getTotalCountOfFoodPending() {
-		return totalCountOfFoodPending;
+	public long getTotalCountOfFoodInDistribution() {
+		return totalCountOfFoodInDistribution;
 	}
 
-	public void setTotalCountOfFoodPending(long totalCountOfFoodPending) {
-		this.totalCountOfFoodPending = totalCountOfFoodPending;
+	public void setTotalCountOfFoodInDistribution(long totalCountOfFoodInDistribution) {
+		this.totalCountOfFoodInDistribution = totalCountOfFoodInDistribution;
+	}
+
+	public long getTotalCountOfFoodInCollection() {
+		return totalCountOfFoodInCollection;
+	}
+
+	public void setTotalCountOfFoodInCollection(long totalCountOfFoodInCollection) {
+		this.totalCountOfFoodInCollection = totalCountOfFoodInCollection;
 	}
 
 	public long getTotalCountOfFoodInProgress() {

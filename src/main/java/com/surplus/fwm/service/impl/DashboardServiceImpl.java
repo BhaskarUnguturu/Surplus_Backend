@@ -42,15 +42,15 @@ public class DashboardServiceImpl implements IDashboardService {
 		// 6-Recipient_organization
 		List<User> ListOfRecipientOrganization = userRepository.findByRole(6);
 		dashboardResponseDto.setTotalCountOfRecipientOrganizationMember(ListOfRecipientOrganization.size());
-		// food in pending
-		List<Food> ListOfFoodInPending = foodRepository.findByStatus(0);
-		dashboardResponseDto.setTotalCountOfFoodPending(ListOfFoodInPending.size());
-		// food in Progress
-		List<Food> ListOfFoodInProgress = foodRepository.findByStatus(1);
-		dashboardResponseDto.setTotalCountOfFoodInProgress(ListOfFoodInProgress.size());
+		// food in inprogress
+		dashboardResponseDto.setTotalCountOfFoodInProgress(foodRepository.countByStatus(0));
+		// food in distribution
+		dashboardResponseDto.setTotalCountOfFoodInDistribution(foodRepository.countByStatus(1));
+
+		// food in collection
+		dashboardResponseDto.setTotalCountOfFoodInCollection(foodRepository.countByStatus(2));
 		// food in donat
-		List<Food> ListOfFoodDonate = foodRepository.findByStatus(3);
-		dashboardResponseDto.setTotalCountOfDonateFood(ListOfFoodDonate.size());
+		dashboardResponseDto.setTotalCountOfDonateFood(foodRepository.countByStatus(3));
 
 		apiResponseDtoBuilder.withMessage("success").withStatus(HttpStatus.OK).withData(dashboardResponseDto);
 

@@ -47,10 +47,10 @@ public class AuthenticationController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ApiResponseDto userlogin(@RequestBody LoginUser loginUser) throws AuthenticationException {
 		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
-		User checkUser = userService.findByMobileNumberOrEmail(loginUser.getUsername(), loginUser.getUsername());
+		User checkUser = userService.findByEmail(loginUser.getUsername());
 		// 0-superadmin,1-university,2-restaurant,3-individual,4-NGO,5-Recipient_individual,6-Recipient_organization
 		if (checkUser == null) {
-			apiResponseDtoBuilder.withStatus(HttpStatus.UNAUTHORIZED).withMessage(Constants.NO_Mobile_EXISTS);
+			apiResponseDtoBuilder.withStatus(HttpStatus.UNAUTHORIZED).withMessage(Constants.NO_EMAIL_EXISTS);
 			return apiResponseDtoBuilder.build();
 		}
 		authenticationManager.authenticate(

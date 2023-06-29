@@ -33,6 +33,13 @@ public class FoodController {
 		return apiResponseDtoBuilder.build();
 	}
 
+	@RequestMapping(value = "/food/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public ApiResponseDto updateFood(@Valid @RequestBody FoodDto foodDto, @RequestParam(required = true) long id) {
+		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();
+		foodService.updateFood(foodDto, id, apiResponseDtoBuilder);
+		return apiResponseDtoBuilder.build();
+	}
+
 	@RequestMapping(value = "/getAll/food/list", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
 	public ApiResponseDto getAllFoodListDetails() {
 		ApiResponseDtoBuilder apiResponseDtoBuilder = new ApiResponseDtoBuilder();

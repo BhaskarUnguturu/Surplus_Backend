@@ -40,9 +40,9 @@ public class ReportServiceImpl implements IReportService {
 			ReportResponseDto reportResponseDto = new ReportResponseDto();
 			long userId = food.getUserId();
 			Optional<User> userdetails = userRepository.findById(userId);
+			if(userdetails.isPresent()) {
 			List<Feedback> feedbacks = feedbackRepository.findByUserId(userId);
 			List<Rating> ratings = ratingRepository.findByUserId(userId);
-
 			reportResponseDto.setUserid(userId);
 			reportResponseDto.setAddress(userdetails.get().getAddress());
 			reportResponseDto.setEmail(userdetails.get().getEmail());
@@ -52,6 +52,7 @@ public class ReportServiceImpl implements IReportService {
 			reportResponseDto.setRating(ratings);
 			reportResponseDto.setFoods(food);
 			allUserDetails.add(reportResponseDto);
+			}
 		}
 
 		apiResponseDtoBuilder.withMessage("success").withStatus(HttpStatus.OK).withData(allUserDetails);

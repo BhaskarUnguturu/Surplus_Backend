@@ -241,8 +241,8 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 		User user = getSessionUser();
 		new Thread(() -> {
 			String subject = "Refer Friend";
-			String body = "Hi " + email.split("@")[0] + " your friend " + user.getFullName()
-					+ " has invited to check our Surplus Share application. Please install and try it out.\n\nKind Regards\nTeam Surplus Share";
+			String body = "Hi " + email.split("@")[0] + "<br>your friend " + user.getFullName()
+					+ " has invited to check our Surplus Share application. Please install and try it out.<br><br>Kind Regards<br>Team Surplus Share";
 			emailService.sendEmail(email, subject, body, "", null, null);
 		}).start();
 		apiResponseDtoBuilder.withMessage("Successfully refered!!").withStatus(HttpStatus.OK);

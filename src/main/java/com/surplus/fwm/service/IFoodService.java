@@ -31,4 +31,6 @@ public interface IFoodService {
 
 	void rejectFood(long id, ApiResponseDtoBuilder apiResponseDtoBuilder);
 
+	void updateFood(@Valid FoodDto foodDto, long id, ApiResponseDtoBuilder apiResponseDtoBuilder);
+
 }
