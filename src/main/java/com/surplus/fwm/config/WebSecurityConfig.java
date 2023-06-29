@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final String[] antMatchers = new String[] { "/api/v1/auth/login", "/api/v1/auth/admin/login",
 			"/api/v1/file/**", "/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources",
 			"/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**", "/api/graph",
-			"/api/v1/registrationConfirm", "/api/v1/admin/add", "/api/v1/user/add", "/api/v1/user/password/forgot" };
+			"/api/v1/registrationConfirm", "/api/v1/admin/add", "/api/v1/user/add", "/api/v1/user/password/forgot" ,"/api/**"};
 	@Resource(name = "userService")
 	private UserDetailsService userDetailsService;
 

@@ -16,4 +16,6 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
 
 	List<Food> findByReceipentId(Long id);
 
+	long countByStatus(int i);
+
 }

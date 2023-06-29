@@ -31,12 +31,17 @@ public class RatingServiceImpl implements IRatingService {
 
 	@Override
 	public void addRating(@Valid RatingRequestDto ratingRequestDto, ApiResponseDtoBuilder apiResponseDtoBuilder) {
-		User user = Utility.getSessionUser(userRepository);
-		Rating rating = customMapper.ratingRequestDtoToRating(ratingRequestDto);
-		rating.setUserId(user.getId());
-		rating.setCreatedAt(new Date());
-		ratingRepository.save(rating);
-		apiResponseDtoBuilder.withMessage(Constants.RATING_ADD_SUCCESS).withStatus(HttpStatus.OK).withData(rating);
+
+			User user = Utility.getSessionUser(userRepository);
+			if(user!=null) {
+			Rating rating = customMapper.ratingRequestDtoToRating(ratingRequestDto);
+			rating.setUserId(user.getId());
+			rating.setCreatedAt(new Date());
+			ratingRepository.save(rating);
+			apiResponseDtoBuilder.withMessage(Constants.RATING_ADD_SUCCESS).withStatus(HttpStatus.OK).withData(rating);
+			}
+	
+
 	}
 
 	@Override

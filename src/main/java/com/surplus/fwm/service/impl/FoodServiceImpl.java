@@ -268,4 +268,23 @@ public class FoodServiceImpl implements IFoodService {
 			apiResponseDtoBuilder.withMessage("fail").withStatus(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@Override
+	public void updateFood(@Valid FoodDto foodDto, long id, ApiResponseDtoBuilder apiResponseDtoBuilder) {
+		Optional<Food> food = foodRepository.findById(id);
+		if (food.isPresent()) {
+			food.get().setTypeOfFood(foodDto.getTypeOfFood());
+			food.get().setQuantity(foodDto.getQuantity());
+			food.get().setTypeOfDonation(foodDto.getTypeOfDonation());
+			food.get().setExpirationDate(foodDto.getExpirationDate());
+			food.get().setDietaryRestrictions(foodDto.getDietaryRestrictions());
+			food.get().setSchedulingTimeDate(foodDto.getSchedulingTimeDate());
+			food.get().setVenue(foodDto.getVenue());
+			food.get().setUpdatedAt(new Date());
+			save(food.get());
+			apiResponseDtoBuilder.withMessage("Donation updated").withStatus(HttpStatus.OK).withData(food);
+		} else {
+			apiResponseDtoBuilder.withMessage("fail").withStatus(HttpStatus.NOT_FOUND);
+		}
+	}
 }
