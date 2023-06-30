@@ -43,38 +43,168 @@ By separating the application into these three components, we can easily make ch
 # APIs Used
 The following APIs are used in this project:
 
-CRUD Operation	Endpoint	Description
-POST	/auth/login	login into account
-POST	/ contact/add	Add Contact information
-GET	/contact/get/all	Fetch the Contact details all
-GET	/dashboard	Fetch the Dashboard information like Total donations etc..
-POST	/feedback/add	Add the Feedback
-GET	/user/{userId}/feedback	Fetch the feedback based on user ID
-GET	/file/{type}/{file}	Get the File based on file type
-GET	/file/download/{type}/{fileName}	Download the file based on the type and filename
-POST	/file/upload	Upload the file
-GET	/donation/list	fetches the Donation List
-PUT	/food/accept	Update the Food upon accept the food donation
-POST	/food/add	Add the food donation
-GET	/food/list	Get the Food donation list all 
-PUT	/food/reject	Reject the Food Donation
-POST	/food/update	Update the Food donation before accepting the food 
-GET	/get/food/{id}	Fetch the food details based on ID
-GET	/getAll/food/list	Get the Food list all information 
-POST	/rating/add	Add the Rating
-GET	/user/{userId}/ratings	Fetch the Rating based on the User ID
-GET	/user/reporting	Get the Reporting information
-POST	/changePassword	Change the password
-GET	 /user/{id}	Get the User details based on ID 
-DELETE	/user/{id}/delete	Delete the user account based on user id
-POST	/user/add	Add the user account
-GET	 /user/list	Fetch the all the user’s information
-POST	/user/pagination/filter	Fetch the user information up to 5 based on filter number
-POST	/user/password/forgot	Forgot the password
-POST	 /user/refer	Refer a friend
-POST	/user/update	Update the user account
-GET	/registrationConfirm	Registration confirms create an account
-GET	/resendRegistrationToken	Fetch the registration token
+<table>
+  <tr>
+    <th>CRUD Operation</th>
+    <th>Endpoint</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/auth/login</td>
+    <td>Login into account</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/contact/add</td>
+    <td>Add Contact information</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/contact/get/all</td>
+    <td>Fetch the Contact details all</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/dashboard</td>
+    <td>Fetch the Dashboard information like Total donations etc.</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/feedback/add</td>
+    <td>Add the Feedback</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/user/{userId}/feedback</td>
+    <td>Fetch the feedback based on user ID</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/file/{type}/{file}</td>
+    <td>Get the File based on file type</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/file/download/{type}/{fileName}</td>
+    <td>Download the file based on the type and filename</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/file/upload</td>
+    <td>Upload the file</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/donation/list</td>
+    <td>Fetches the Donation List</td>
+  </tr>
+  <tr>
+    <td>PUT</td>
+    <td>/food/accept</td>
+    <td>Update the Food upon accepting the food donation</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/food/add</td>
+    <td>Add the food donation</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/food/list</td>
+    <td>Get the Food donation list all</td>
+  </tr>
+  <tr>
+    <td>PUT</td>
+    <td>/food/reject</td>
+    <td>Reject the Food Donation</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/food/update</td>
+    <td>Update the Food donation before accepting the food</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/get/food/{id}</td>
+    <td>Fetch the food details based on ID</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/getAll/food/list</td>
+    <td>Get the Food list all information</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/rating/add</td>
+    <td>Add the Rating</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/user/{userId}/ratings</td>
+    <td>Fetch the Rating based on the User ID</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/user/reporting</td>
+    <td>Get the Reporting information</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/changePassword</td>
+    <td>Change the password</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/user/{id}</td>
+    <td>Get the User details based on ID</td>
+  </tr>
+  <tr>
+    <td>DELETE</td>
+    <td>/user/{id}/delete</td>
+    <td>Delete the user account based on user ID</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/user/add</td>
+    <td>Add the user account</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/user/list</td>
+    <td>Fetch all the user's information</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/user/pagination/filter</td>
+    <td>Fetch the user information up to 5 based on filter number</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/user/password/forgot</td>
+    <td>Forgot the password</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/user/refer</td>
+    <td>Refer a friend</td>
+  </tr>
+  <tr>
+    <td>POST</td>
+    <td>/user/update</td>
+    <td>Update the user account</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/registrationConfirm</td>
+    <td>Registration confirms create an account</td>
+  </tr>
+  <tr>
+    <td>GET</td>
+    <td>/resendRegistrationToken</td>
+    <td>Fetch the registration token</td>
+  </tr>
+</table>
 
 # Installation
 1.	Install Eclipse IDEA and MySQL .
@@ -101,4 +231,5 @@ mvn clean
 mvn install
 
 run as a spring boot java application
+
 
