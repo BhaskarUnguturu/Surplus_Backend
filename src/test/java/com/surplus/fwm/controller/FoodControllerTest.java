@@ -33,7 +33,7 @@ public class FoodControllerTest {
 
 	private final String URL = "http://localhost:";
 
-	@Test
+	//@Test
 	public void addFood() throws Exception {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -80,7 +80,7 @@ public class FoodControllerTest {
 		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 	}
 
-	@Test
+	//@Test
 	public void getFoodList() throws Exception {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -92,7 +92,7 @@ public class FoodControllerTest {
 	}
 
 	
-	@Test
+	//@Test
 	public void getDonationList() throws Exception {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);

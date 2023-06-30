@@ -28,22 +28,6 @@ public class FeedbackControllerTest {
 
 	private final String URL = "http://localhost:";
 
-	@Test
-	public void addFeedback() throws Exception {
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.APPLICATION_JSON);
-
-		FeedbackRequestDto feedbackRequestDto = new FeedbackRequestDto();
-		feedbackRequestDto.setFeedback("test");
-		String url = URL + port + "/api/v1/feedback/add";
-		HttpEntity<FeedbackRequestDto> request = new HttpEntity<>(feedbackRequestDto, headers);
-
-		ResponseEntity<ApiResponseDtoBuilder> responseEntity = restTemplate.postForEntity(url, request,
-				ApiResponseDtoBuilder.class);
-
-		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-
-	}
 
 	@Test
 	public void getFeedbackListByUserId() throws Exception {

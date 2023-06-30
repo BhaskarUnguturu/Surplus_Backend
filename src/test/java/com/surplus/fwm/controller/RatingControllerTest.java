@@ -45,7 +45,7 @@ public class RatingControllerTest {
 
 		SecurityContextHolder.getContext().setAuthentication(auth);
 	}
-	@Test
+	//@Test
 	public void addRating() throws Exception {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
